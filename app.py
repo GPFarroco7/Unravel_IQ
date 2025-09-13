@@ -6,23 +6,22 @@ from interfaces.segmentacao import dashboard_segmentacao
 from interfaces.recompra import dashboard_recompra
 from interfaces.recomendacao import dashboard_recomendacoes
 
-# Configurações da página (deve ser o primeiro comando Streamlit)
+# Configurações da página
 st.set_page_config(
     page_title='Dashboard ClickBus',
-    page_icon='images/logo-clickbus.ico', # Verifique se o caminho da imagem está correto
+    page_icon='images/logo-clickbus.ico',
     layout='wide'
 )
 
-# --- AQUI ESTÁ A CORREÇÃO ---
 # O código que cria o menu precisa estar dentro do "with st.sidebar"
 with st.sidebar: 
-    st.image('images/logo-clickbus-sem-fundo.png') # Verifique se o caminho da imagem está correto
+    st.image('images/logo-clickbus-sem-fundo.png')
     
     # Esta linha CRIA a variável 'menu' com base na escolha do usuário
     menu = option_menu(
         'Navegação', 
-        options=['Segmentação', 'Recompra', 'Recomendações', 'AI Insights'],
-        icons=['people-fill', 'cart-check-fill', 'bus-front', 'robot'],
+        options=['Segmentação', 'Recompra', 'Recomendações'],
+        icons=['people-fill', 'cart-check-fill', 'bus-front'],
         menu_icon='compass-fill',
         default_index=0,
         styles={
@@ -34,8 +33,6 @@ with st.sidebar:
         }
     )
 
-# --- FIM DA CORREÇÃO ---
-
 # Mudando de página conforme a seleção do menu
 if menu == 'Segmentação':
     dashboard_segmentacao()
@@ -45,7 +42,3 @@ if menu == 'Recompra':
 
 if menu == 'Recomendações':
     dashboard_recomendacoes()
-
-if menu == 'AI Insights':
-    st.title("AI Insights")
-    st.info("Esta página está em desenvolvimento.")
